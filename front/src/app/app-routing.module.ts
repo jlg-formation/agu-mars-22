@@ -12,6 +12,7 @@ const routes: Routes = [
     component: LegalComponent,
     path: 'legal',
   },
+  { path: 'stock', loadChildren: () => import('./stock/stock.module').then(m => m.StockModule) },
 ];
 
 @NgModule({

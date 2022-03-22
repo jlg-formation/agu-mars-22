@@ -1,6 +1,6 @@
 console.log("Je demarre le serveur web.");
 
-import express from "express";
+import express, { NextFunction, Request, Response } from "express";
 import serveIndex from "serve-index";
 import { api } from "./api";
 
@@ -9,10 +9,12 @@ const wwwDir = "./public";
 
 const app = express();
 
-app.use((req, res, next) => {
+const accessLog = (req: Request, res: Response, next: NextFunction) => {
   console.log("req: ", req.url);
   next();
-});
+};
+
+app.use(accessLog);
 
 app.use("/api", api);
 

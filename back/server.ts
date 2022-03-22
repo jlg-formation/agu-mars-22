@@ -1,8 +1,8 @@
 console.log("Je demarre le serveur web.");
 
-const express = require("express");
-const serveIndex = require("serve-index");
-const api = require("./api");
+import express from "express";
+import serveIndex from "serve-index";
+import { api } from "./api";
 
 const port = 3000;
 const wwwDir = "./public";

@@ -1,7 +1,7 @@
 import express from "express";
 import { v4 as uuidv4 } from "uuid";
 
-const articles = [{ id: 1, name: "Pinceau", price: 3.21, qty: 456 }];
+let articles = [{ id: 1, name: "Pinceau", price: 3.21, qty: 456 }];
 
 const app = express.Router();
 
@@ -20,6 +20,12 @@ app.post("/articles", (req, res) => {
   article.id = uuidv4();
   articles.push(article);
   res.status(201).json(article);
+});
+
+app.delete("/articles", (req, res) => {
+  const ids = req.body;
+  articles = articles.filter((a) => !ids.includes(a.id));
+  res.status(204).end();
 });
 
 export const api = app;

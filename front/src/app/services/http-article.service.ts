@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Article } from '../interfaces/article';
 import { ArticleService } from './article.service';
@@ -42,5 +42,28 @@ export class HttpArticleService extends ArticleService {
         console.log('complete');
       },
     });
+  }
+
+  override remove(selectedArticles: Set<Article>): void {
+    super.remove(selectedArticles);
+    const ids = [...selectedArticles].map((a) => a.id);
+    this.http
+      .delete(url, {
+        headers: new HttpHeaders({
+          'Content-Type': 'application/json',
+        }),
+        body: JSON.stringify(ids),
+      })
+      .subscribe({
+        next: () => {
+          this.retrieveAll();
+        },
+        error: (err) => {
+          console.log('err: ', err);
+        },
+        complete: () => {
+          console.log('complete');
+        },
+      });
   }
 }

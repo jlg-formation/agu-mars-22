@@ -2,6 +2,7 @@ console.log("Je demarre le serveur web.");
 
 import express, { NextFunction, Request, Response } from "express";
 import serveIndex from "serve-index";
+import cors from "cors";
 import { api } from "./api";
 
 const port = 3000;
@@ -15,6 +16,7 @@ const accessLog = (req: Request, res: Response, next: NextFunction) => {
 };
 
 app.use(accessLog);
+app.use(cors());
 
 app.use("/api", api);
 

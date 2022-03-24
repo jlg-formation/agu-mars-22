@@ -6,7 +6,7 @@ import cors from "cors";
 import { api } from "./api";
 
 const port = 3000;
-const wwwDir = "./public";
+const wwwDir = "../front/dist/front";
 
 const app = express();
 

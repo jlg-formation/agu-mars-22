@@ -6,7 +6,7 @@ import cors from "cors";
 import { api } from "./api";
 import path from "path";
 
-const port = 3000;
+const port = +process.env.CNMSS_PORT || 3000;
 const wwwDir = "../front/dist/front";
 
 const app = express();

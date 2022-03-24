@@ -1,4 +1,4 @@
-<h1>Wiame Analytics</h1>
+<h1>CNMSS Stock</h1>
 
 An angular web app with nodejs back-end.
 
@@ -375,33 +375,13 @@ Example:
 module.exports = {
   apps: [
     {
-      name: "Wiame API Node Server",
-      script: "build/src/index.js",
+      name: "CNMSS Stock",
+      script: "dist/server.js",
       env: {
-        WIAME_NODESERVER_PORT: 3050,
+        CNMSS_PORT: 9999,
       },
       env_production: {
-        WIAME_NODESERVER_PORT: 3333,
-        OAUTH2_PROVIDER_LIST: "GITHUB,AZUREAD",
-
-        OAUTH2_GITHUB_CLIENT_ID: "xxxxxx",
-        OAUTH2_GITHUB_CLIENT_SECRET: "xxxxxx",
-        OAUTH2_GITHUB_AUTHORIZATION_URL:
-          "https://github.com/login/oauth/authorize",
-        OAUTH2_GITHUB_ACCESS_TOKEN_URL:
-          "https://github.com/login/oauth/access_token",
-
-        OAUTH2_AZUREAD_CLIENT_ID: "xxxxxx",
-        OAUTH2_AZUREAD_CLIENT_SECRET: "xxxxxx",
-        OAUTH2_AZUREAD_AUTHORIZATION_URL:
-          "https://login.microsoftonline.com/common/oauth2/v2.0/authorize",
-        OAUTH2_AZUREAD_ACCESS_TOKEN_URL:
-          "https://login.microsoftonline.com/common/oauth2/v2.0/token",
-
-        OAUTH2_TESTPROVIDER_CLIENT_ID: "test_client_id",
-        OAUTH2_TESTPROVIDER_CLIENT_SECRET: "test_secret_id",
-        OAUTH2_TESTPROVIDER_AUTHORIZATION_URL: "/api/test-provider/authorize",
-        OAUTH2_TESTPROVIDER_ACCESS_TOKEN_URL: "/api/test-provider/token",
+        CNMSS_PORT: 9999,
       },
     },
   ],
@@ -575,7 +555,7 @@ server {
         rewrite ^ http://vps.jlg-consulting.com/not-allowed.html;
     }
 
-    server_name wiame.jlg-consulting.com;
+    server_name cnmss-stock.jlg-consulting.com;
 
 
     location / {
@@ -584,14 +564,14 @@ server {
 
     listen [::]:443 ssl; # managed by Certbot
     listen 443 ssl; # managed by Certbot
-    ssl_certificate /etc/letsencrypt/live/wiame.jlg-consulting.com/fullchain.pem; # managed by Certbot
-    ssl_certificate_key /etc/letsencrypt/live/wiame.jlg-consulting.com/privkey.pem; # managed by Certbot
+    ssl_certificate /etc/letsencrypt/live/cnmss-stock.jlg-consulting.com/fullchain.pem; # managed by Certbot
+    ssl_certificate_key /etc/letsencrypt/live/cnmss-stock.jlg-consulting.com/privkey.pem; # managed by Certbot
     include /etc/letsencrypt/options-ssl-nginx.conf; # managed by Certbot
     ssl_dhparam /etc/letsencrypt/ssl-dhparams.pem; # managed by Certbot
 
 }
 server {
-    if ($host = wiame.jlg-consulting.com) {
+    if ($host = cnmss-stock.jlg-consulting.com) {
         return 301 https://$host$request_uri;
         } # managed by Certbot
 
@@ -599,7 +579,7 @@ server {
         listen 80;
         listen [::]:80;
 
-        server_name wiame.jlg-consulting.com;
+        server_name cnmss-stock.jlg-consulting.com;
         return 404; # managed by Certbot
 
 

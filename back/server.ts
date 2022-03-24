@@ -4,6 +4,7 @@ import express, { NextFunction, Request, Response } from "express";
 import serveIndex from "serve-index";
 import cors from "cors";
 import { api } from "./api";
+import path from "path";
 
 const port = 3000;
 const wwwDir = "../front/dist/front";
@@ -22,6 +23,13 @@ app.use("/api", api);
 
 app.use(express.static(wwwDir));
 app.use(serveIndex(wwwDir));
+
+// url rewriting
+app.get("/*", (req, res) => {
+  res.sendFile("index.html", {
+    root: path.resolve(wwwDir),
+  });
+});
 
 app.listen(port, () => {
   console.log(`Server started successfully at port ${port}`);

@@ -1,5 +1,5 @@
 import { ArticleService } from './../../services/article.service';
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Article } from 'src/app/interfaces/article';
@@ -9,7 +9,7 @@ import { Article } from 'src/app/interfaces/article';
   templateUrl: './add.component.html',
   styleUrls: ['./add.component.scss'],
 })
-export class AddComponent implements OnInit {
+export class AddComponent {
   f = new FormGroup({
     name: new FormControl('qwerqwer'),
     price: new FormControl(45),
@@ -21,8 +21,6 @@ export class AddComponent implements OnInit {
     private route: ActivatedRoute,
     private articleService: ArticleService
   ) {}
-
-  ngOnInit(): void {}
 
   submit() {
     console.log('submit');

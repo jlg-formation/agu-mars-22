@@ -43,4 +43,10 @@ app.delete("/articles", (req, res) => {
   res.status(204).end();
 });
 
+app.get("/crash", (req, res) => {
+  (async () => {
+    throw new Error("bim bam badaboom!!!");
+  })();
+});
+
 export const api = app;
